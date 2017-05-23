@@ -10,10 +10,14 @@ Gradle configuration
 Because DBFlow4 is still not officially released, you need also add https://jitpack.io to your allprojects -> repositories dependency list:
 
 allprojects {
+    
+    
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
-    }
+    
+ 
+ }
 }
 
 Next, within your app/build.gradle, add DBFlow to your dependency list. We create a separate variable to store the version number to make it easier to change later:
