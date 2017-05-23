@@ -44,9 +44,7 @@ dependencies {
 
 Create a MyDatabase.java file and annotate your class with the @Database decorator to declare your database. It should contain both the name to be used for creating the table, as well as the version number. Note: if you decide to change the schema for any tables you create later, you will need to bump the version number. The version number should always be incremented (and never downgraded) to avoid conflicts with older database versions.
 
-this = "Java Code"
-puts "This is #{
-
+```
 @Database(name = MyDatabase.NAME, version = MyDatabase.VERSION)
 public class MyDatabase {
     public static final String NAME = "MyDataBase";
@@ -55,5 +53,41 @@ public class MyDatabase {
 }
 )
 
-}"
+}
+```
+#### Defining your Tables
+```
+The Java model objects need to extend from the BaseModel class as shown below for an Organization model:
 
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
+// **Note:** Your class must extend from BaseModel
+@Table(database = MyDatabase.class)
+public class Organization extends BaseModel {
+
+  @Column
+  @PrimaryKey
+  int id;
+
+  @Column
+  String name;
+}
+```
+#### Basic CRUD operations
+
+Basic creation, read, update, and delete (CRUD) statements are fairly straightforward to do. DBFlow generates a Table class for each your annotated models (i.e. User_Table, Organization_Table), and each field is defined as a Property object and ensures type-safety when evaluating it against in a SELECT statement or a raw value
+
+```
+// Create organization
+Organization organization = new Organization();
+organization.setId(1);
+organization.setName("CodePath");
+organization.save();
+
+// Create user
+User user = new User();
+user.setName("John Doe");
+user.setOrganization(organization);
+user.save();
+
+```
