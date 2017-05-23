@@ -40,4 +40,20 @@ dependencies {
   }
 
 
+#### Creating the database
+
+Create a MyDatabase.java file and annotate your class with the @Database decorator to declare your database. It should contain both the name to be used for creating the table, as well as the version number. Note: if you decide to change the schema for any tables you create later, you will need to bump the version number. The version number should always be incremented (and never downgraded) to avoid conflicts with older database versions.
+
+this = "Java Code"
+puts "This is #{
+
+@Database(name = MyDatabase.NAME, version = MyDatabase.VERSION)
+public class MyDatabase {
+    public static final String NAME = "MyDataBase";
+
+    public static final int VERSION = 1;
+}
+)
+
+}"
 
